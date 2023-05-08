@@ -5,27 +5,30 @@ env: # Environment variables to pass to all tasks
     # For rclone with google drive or any cloud! After first commit pushing, login to https://cirrus-ci.com , click top left corner 3 dot menu, click repository(yourname/aosp-builder) > Repository Settings > Secured Variables > enter content of ~/.config/rclone/rclone.conf (from pc where you setup rclone) > ENCRYPT, copy that ENCRYPTED hash
     # ENCRYPTED variables is unique for every repository, so you cant use my one, create you rclone config https://rclone.org/drive/#making-your-own-client-id
     # CHAT_ID and BOT_TOKEN are used by telegram functions. I don't want you to control my bot xD
-    rclone_config: "ENCRYPTED[413ed0c4cad4ce68e9a5ff1efceb6e36950b186730b5b13be7a777d27322bb1a214229c8df797179fb37dc6cd8db9429]"
-    CHAT_ID: -1001315516220"
-    BOT_TOKEN: "ENCRYPTED[6e56bd2c2cb5f96f8e9e159b2683d86ad78bc44074acc029e7329976cd8457152d61b28a65b9b63856d816db143ec0c4]"
-    
+    rclone_config: "ENCRYPTED[!1f05479865cdd2b61271f79b8d913adc5d7534b6814ee69a84e8867bc5151f05ad69782f3302797b2bfb7901957239ad!]"
+    CHAT_ID: "-1001861749152"
+    TG_CHAT_ID: "-1001861749152"
+    TG_TOKEN: "ENCRYPTED[!8deadd82a87ee61e14f63fab422c8995852a71e97017c4755267b985f19b6d2c2cdb39c86f4f838d0ec7d0843cfa272d!]"
+    BOT_TOKEN: "ENCRYPTED[!8deadd82a87ee61e14f63fab422c8995852a71e97017c4755267b985f19b6d2c2cdb39c86f4f838d0ec7d0843cfa272d!]"
+    GH_EMAIL: "ENCRYPTED[!76dc7e85954c4b300143e95389a5673daf755efd584c8a9baf11d343e673febcc7fd9c25bb07a176421dd38883afda9e!]"
+    GH_TOKEN: "ENCRYPTED[!44cf08649f4d202c8eadf0887b8f2bb66a7f28175a567a4fb654f44034dfdc432507e0d4d8422b3204b6a6fa3b40d070!]"
+
+
     # Github variables needed so as to be able to clone private repos too without authenticating. Useful for building official roms which have private repos. The first 3 variables needs to be encrypted!! You can hide your email and username by encrypting them too if you want but that's not neccessary.
-    id_rsa_pub: "ENCRYPTED[bf1e5e38f317d2ab4dc26e419a51fae5daeb46a01490a1c97e5e42457720d8916196019d392f1c96fe64a9b4a530f53c]"
-    id_rsa: "ENCRYPTED[7c6a7f4d5993ba29e9d83adbe48d63d5bdb97985d6234a63164f8464219fdc71905abaa6bd5e1c84914b6daa4b4c7af7]"
-    known_hosts: "ENCRYPTED[f26e49ca00502884079f6d20a494fb4c9ed8c06bfe40570d3d47dbb7006f76db7f4947a85771f52696e45375e4b65c25]"
-    user_email: "adeilmazk@gmail.com"
-    user_name: "Gabriel260"
-    user_pass: "ENCRYPTED[5dfe968ae63964465604340bab71665bb46aa6b211ad8b7ef27ee1fb6c048ed624d3784625d22055e74712e9c07c755c]"
-    user_credentials: "ENCRYPTED[ef4da9eae8cb7424e0d2da91eaca516053ba4d137775c3a34187827bd4a69974e78af5711606df39cc80c99b1cebbea5]"
+    user_email: "ENCRYPTED[!76dc7e85954c4b300143e95389a5673daf755efd584c8a9baf11d343e673febcc7fd9c25bb07a176421dd38883afda9e!]"
+    user_name: "Hirozuto"
+    user_pass: "ENCRYPTED[!44cf08649f4d202c8eadf0887b8f2bb66a7f28175a567a4fb654f44034dfdc432507e0d4d8422b3204b6a6fa3b40d070!]"
 
 task:
-    name: aosp # Project name
+    name: Building # Project name
     timeout_in: 120m # Otherwise it will timeout at 60m automatically, 120m highest in free account
     container:
       image: apon77/aosp:cirrus # It has built-in setup environment + repo, aria2, rclone, pigz, username ci, and email ci@ci.ci [You can use your own docker image if you want, or you can use this one too!]
       cpu: 8  # 8 or less cpu for dummy build, 8 cpu for the final build, 8cpu highest for free accounts. Don't try to use more than 8cpu as free user, you may get blocked by ci.
       memory: 32G # So that we can have ram when needed, 32G highest. 4G per CPU you use.
-    monitor_background_script: # To monitor ccache and machine status every minute, runs in background
+    permission_script: # Actual chmod script foreground
+      - chmod 777 * # chmod script to run
+    monitoring_background_script: # To monitor ccache and machine status every minute, runs in background
       - ./monitor # Monitor script
-    build_script: # Actual build script foreground
-      - ./build.sh # Build script to run
+    Build_script: # Actual build script foreground
+      - ./build-clang.sh # Build script to run
