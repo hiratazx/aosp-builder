@@ -5,18 +5,14 @@ env: # Environment variables to pass to all tasks
     # For rclone with google drive or any cloud! After first commit pushing, login to https://cirrus-ci.com , click top left corner 3 dot menu, click repository(yourname/aosp-builder) > Repository Settings > Secured Variables > enter content of ~/.config/rclone/rclone.conf (from pc where you setup rclone) > ENCRYPT, copy that ENCRYPTED hash
     # ENCRYPTED variables is unique for every repository, so you cant use my one, create you rclone config https://rclone.org/drive/#making-your-own-client-id
     # CHAT_ID and BOT_TOKEN are used by telegram functions. I don't want you to control my bot xD
-    rclone_config: "ENCRYPTED[413ed0c4cad4ce68e9a5ff1efceb6e36950b186730b5b13be7a777d27322bb1a214229c8df797179fb37dc6cd8db9429]"
-    CHAT_ID: -1001315516220"
-    BOT_TOKEN: "ENCRYPTED[6e56bd2c2cb5f96f8e9e159b2683d86ad78bc44074acc029e7329976cd8457152d61b28a65b9b63856d816db143ec0c4]"
+    rclone_config: "ENCRYPTED[!ddbfab90bcfaf46428a3874f74c56cb20dd63959c553b7d78de0d4dda69a9927af9978743b845093829ab4fbac940b0a!]"
+    CHAT_ID: "-1002137529622"
+    BOT_TOKEN: "ENCRYPTED[!e42272d22171be9e22d454ebf1f58d1dbe57842c292070ba4b9e629c642f6671f76662f9cc0338ecae5a6fee996dbe39!]"
     
     # Github variables needed so as to be able to clone private repos too without authenticating. Useful for building official roms which have private repos. The first 3 variables needs to be encrypted!! You can hide your email and username by encrypting them too if you want but that's not neccessary.
-    id_rsa_pub: "ENCRYPTED[bf1e5e38f317d2ab4dc26e419a51fae5daeb46a01490a1c97e5e42457720d8916196019d392f1c96fe64a9b4a530f53c]"
-    id_rsa: "ENCRYPTED[7c6a7f4d5993ba29e9d83adbe48d63d5bdb97985d6234a63164f8464219fdc71905abaa6bd5e1c84914b6daa4b4c7af7]"
-    known_hosts: "ENCRYPTED[f26e49ca00502884079f6d20a494fb4c9ed8c06bfe40570d3d47dbb7006f76db7f4947a85771f52696e45375e4b65c25]"
-    user_email: "adeilmazk@gmail.com"
-    user_name: "Gabriel260"
-    user_pass: "ENCRYPTED[5dfe968ae63964465604340bab71665bb46aa6b211ad8b7ef27ee1fb6c048ed624d3784625d22055e74712e9c07c755c]"
-    user_credentials: "ENCRYPTED[ef4da9eae8cb7424e0d2da91eaca516053ba4d137775c3a34187827bd4a69974e78af5711606df39cc80c99b1cebbea5]"
+    user_email: "madeayurenapramudya@gmail.com"
+    user_name: "hiratazx"
+    user_pass: "ENCRYPTED[!11cbb259c53fd54668ac7b7129d8e0b4700d2e475cbda5ee47ffaa457021affb66ae75588a3f491373e6bb703a0b35b9!]"
 
 task:
     name: aosp # Project name
